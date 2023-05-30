@@ -13,3 +13,28 @@ import pandas as pd
 
 engine = create_engine('postgresql://ariel_chumbita_coderhouse:qMikD5W3c4@data-engineer-cluster.cyhh5bfevlmn.us-east-1.redshift.amazonaws.com:5439/data-engineer-database')
 df = pd.read_sql_query('SELECT*FROM titanic', con=engine)
+
+
+#CORRO QUERY EN PYTHON
+import psycopg
+
+con = psycopg.connect(host=data-engineer-cluster.cyhh5bfevlmn.us-east-1.redshift.amazonaws.com, dbname="test", user="postgres",password="secret", port="5439")
+cur = con.cursor()
+
+cur.execute("CREATE TABLE test(id serial PRIMARY KEY, num integer, data varchar);")
+
+cur.execute("SELECT * FROM titanic")
+
+cur.execute("INSERT INTO test (id, num, data) VALUES (%S,%S,%S)", (10,11,'ABC'))
+
+cur.fetchone() #Veo el resultado de la query en forma de tupla.
+
+result = cur.fetchone(2) #Limito cantidad de filas que quiero que retorne.
+
+result = cur.fetchall() #Veo totas las filas, es un array de tuplas. No se usa cuando tengo muchas filas.
+
+conn.commit() #Guardo los cambios que hice pasando a ser permanentes.
+
+cur.close() #Cierro cursor
+
+conn.close()#Cierro el objeto de conexión
