@@ -38,3 +38,14 @@ conn.commit() #Guardo los cambios que hice pasando a ser permanentes.
 cur.close() #Cierro cursor
 
 conn.close()#Cierro el objeto de conexión
+
+
+
+#INCREMENTAL LOAD
+begin transaction;
+
+delete from titanic using titanic_staging where titanic.id=titanic_staging.id and titanic.insert_date >='2022-10-21';
+
+insert into titanic select * from titanic_staging;
+
+end transation; 
