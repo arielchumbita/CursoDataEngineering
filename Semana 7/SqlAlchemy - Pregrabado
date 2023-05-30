@@ -1,0 +1,15 @@
+from sqlalchemy import create_engine #Variable que permite la conexión con la base de datos
+#engine= create_engine(f"postgresql://{username}:{pwd}@localhost:{port_id}/{database}")
+conn = create_engine('postgresql://ariel_chumbita_coderhouse:qMikD5W3c4@data-engineer-cluster.cyhh5bfevlmn.us-east-1.redshift.amazonaws.com:5439/data-engineer-database')
+
+#FUNCIÓN TO:
+#Parámetros: tabla donde se cargan los datos, engine, index para que no se crean índices. 
+
+
+
+#DATA FRAME DESDE BASE DE DATOS
+from sqlalchemy import create_engine
+import pandas as pd
+
+engine = create_engine('postgresql://ariel_chumbita_coderhouse:qMikD5W3c4@data-engineer-cluster.cyhh5bfevlmn.us-east-1.redshift.amazonaws.com:5439/data-engineer-database')
+df = pd.read_sql_query('SELECT*FROM titanic', con=engine)
